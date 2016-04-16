@@ -1,0 +1,136 @@
+Summary Data:
+
+FID = FID=SEL-311L-R157-V0-Z009004-D20060728
+MONTH = 7
+DAY = 15
+YEAR = 2012
+HOUR = 21
+MIN = 44
+SEC = 15
+MSEC = 147
+FREQ = 60.03
+SAM/CYC_A = 16
+SAM/CYC_D = 16
+NUM_OF_CYC = 30
+EVENT = CG T
+LOCATION = 0.84
+SHOT = 
+TARGETS = 87 
+IA = 392
+IB = 180
+IC = 3626
+IP = 1
+IG = 3811
+3I2 = 3127
+IAL = 406
+IBL = 169
+ICL = 3694
+IAX = 409
+IBX = 170
+ICX = 1952
+IAY = 39323
+IBY = 39323
+ICY = 39323
+NFREQ = 60
+PRE_FAULT_CYCLES = 4.000
+START_TIME = 02/12/12,21:44:15.081375
+TRIG_TIME = 02/12/12,21:44:15.147000
+
+
+Settings:
+
+Group 1
+Group Settings:
+RID   =6905 BU                        TID   =TREDYFFIN                      
+CTR   = 240       APP   = 87L21P    
+E87L  = 2         EHST  = N         EHSDTT= N         
+EDD   = N         ETAP  = N         
+PCHAN = X         EHSC  = N         
+CTR_X = 240       
+87LPP = 6.00      87L2P = 0.50      87LGP = OFF       CTALRM= 0.50      
+87LR  = 6.0       87LANG= 195       
+CTRP  = 240       PTR   = 600.00    PTRS  = 2000.00   
+Z1MAG = 1.78      Z1ANG = 75.10     
+Z0MAG = 5.71      Z0ANG = 72.10     LL    = 1.00      
+ELOP  = Y1        ECOMM = POTT      E79   = N         
+ECCVT = Y         ESV   = 1         ELAT  = 2         EDP   = 4         
+Z1P   = 1.43      Z2P   = 2.67      Z3P   = 1.25      Z4P   = OFF       
+Z1MG  = 1.43      Z2MG  = 2.67      Z3MG  = 1.25      Z4MG  = OFF       
+Z1PD  = 5.00      Z2PD  = 25.00     Z3PD  = OFF       Z4PD  = OFF       
+Z1GD  = 5.00      Z2GD  = 25.00     Z3GD  = OFF       Z4GD  = OFF       
+Z1D   = 5.00      Z2D   = 25.00     Z3D   = OFF       Z4D   = OFF       
+50P1P = 10.00     
+67P1D = 0.00      
+50G1P = OFF       50G2P = OFF       50G3P = OFF       
+67G1D = 0.00      67G2D = 0.00      67G3D = 0.00      
+51GP  = 2.50      51GC  = U3        51GTD = 4.25      51GRS = Y         
+DIR3  = R         DIR4  = F         
+CLOEND= 10.00     52AEND= 10.00     SOTFD = 30.00     
+Z3RBD = 0.00      EBLKD = OFF       ETDPU = OFF       
+EDURD = 0.00      EWFC  = N         
+TDURD = 9.00      CFD   = OFF       
+SV1PU = 1.00      SV1DO = 3.00      
+SELogic Group 1
+SELogic Control Equations:
+TR    =M1PT + Z1GT + M2PT + Z2GT + 51GT + TRIP87
+TRCOMM=M2P + Z2G
+TRSOTF=50P1 + M2P + Z2G
+DTT   =0
+ULTR  =!(50L + 51G)
+PT1   =R3X
+52A   =IN102
+CL    =0
+ULCL  =0
+SET1  =R1X
+RST1  =TRGTR
+SET2  =IN104
+RST2  =TRGTR
+67P1TC=1
+67G1TC=1
+67G2TC=1
+67G3TC=1
+51GTC =1
+SV1   =R1X
+OUT101=TRIP
+OUT102=0
+OUT103=0
+OUT104=0
+OUT105=SV1T
+OUT106=CHXAL
+OUT107=LOP * IN102
+OUT201=0
+OUT202=0
+OUT203=0
+OUT204=0
+OUT205=0
+OUT206=0
+DP1   =LT1
+DP2   =LT2
+DP3   =CHXAL
+DP4   =87LPE
+SS1   =1
+SS2   =0
+SS3   =0
+SS4   =0
+SS5   =0
+SS6   =0
+ER    =/LOP + /R1X + /T1X
+FAULT =M2P + Z2G + T51G
+ESTUB =0
+T1X   =IN104
+T2X   =0
+T3X   =KEY
+T4X   =0
+T1Y   =0
+T2Y   =0
+T3Y   =0
+T4Y   =0
+Global Settings:
+TGR   = 0.00      NFREQ = 60        PHROT = ABC       
+DATE_F= MDY       FP_TO = 30.00     SCROLD= 5         
+LER   = 60        PRE   = 4         DCLOP = OFF       DCHIP = OFF       
+IN101D= 0.00      IN102D= 0.00      IN103D= 0.00      IN104D= 0.00      
+IN105D= 0.00      IN106D= 0.00      
+EBMON = N         
+EPMU  = N         
+

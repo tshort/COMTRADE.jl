@@ -17,8 +17,8 @@ include:
 * `samp::Vector{Float64}` -- Sample rate in hertz. 
 * `endsamp::Vector{Int}` -- Numper of sample points at each sampling rate.
 * `npts::Int` -- Number of sample points. 
-* `time::DateTimeMicro` -- Time stamp of the first data point.
-* `triggertime::DateTimeMicro` -- Time stamp of the trigger time.
+* `time` -- Time stamp of the first data point.
+* `triggertime` -- Time stamp of the trigger time.
 * `ft::ASCIIString` -- File type, options include "ASCII" or "BINARY".
 * `timemult::Float64` -- Multiplication factor for the timestamp.
 * `time_code::ASCIIString` -- Time difference between local time and UTC, including daylight savings (2013).
@@ -52,6 +52,8 @@ include:
 
 Note that the `:PS` column of `A` is not used to adjust the data in `read_comtrade`.
 Likewise, `:skew` is not used to adjust the time stamp.
+
+Some of the columns in `A` and `D` may be missing in older file revisions.
 """
 type ComtradeCfg
     station_name::UTF8String
@@ -67,8 +69,8 @@ type ComtradeCfg
     samp::Vector{Float64}
     endsamp::Vector{Int}
     npts::Int
-    time::DateTimeMicro
-    triggertime::DateTimeMicro
+    time
+    triggertime
     ft::ASCIIString
     timemult::Float64
     time_code::ASCIIString
@@ -101,11 +103,15 @@ function read_cfg(fn)
     x.nD = asint(replace(sa[3], "D", ""))
     x.A = readtable(fn, separator = ',', header = false, skipstart = 2, 
                     nrows = x.nA)
-    names!(x.A, [:An, :ch_id, :ph, :ccbm, :uu, :a, :b, :skew, :min, :max, :primary, :secondary, :PS])
+    names!(x.A, [:An, :ch_id, :ph, :ccbm, :uu, :a, :b, :skew, :min, :max, :primary, :secondary, :PS][1:ncol(x.A)])
     if x.nD > 0
         x.D = readtable(fn, separator = ',', header = false, skipstart = 2 + x.nA, 
                         nrows = x.nD)
-        names!(x.D, [:Dn, :ch_id, :ph, :ccbm, :y])
+        if x.rev_year > 1991
+            names!(x.D, [:Dn, :ch_id, :ph, :ccbm, :y])
+        else
+            names!(x.D, [:Dn, :ch_id, :y])
+        end
     end
     x.nrates  = asint(a[x.tt + 4])
     for i in 1:max(x.nrates, 1)
@@ -117,7 +123,13 @@ function read_cfg(fn)
     x.npts = sum(x.endsamp)    
     try
         x.time        = DateTimeMicro(strip(a[nrow + 5]))
+    catch
+        x.time        = strip(a[nrow + 5])
+    end
+    try
         x.triggertime = DateTimeMicro(strip(a[nrow + 6]))
+    catch
+        x.triggertime = strip(a[nrow + 6])
     end
     x.ft     = uppercase(strip(a[nrow + 7]))
     if x.rev_year >= 1999

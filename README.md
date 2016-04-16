@@ -89,6 +89,9 @@ The utility string macro `S_str` is also provided to make it easier to enter
 DataFrame columns as symbols for column names that are not standard. An example
 is `S"V(A)"`.
 
+For storing timestamps, a `DateTimeMicro` type is provided with microsecond 
+precision.
+
 Here are some limitations in the current version:
 
 * Writing isn't supported.

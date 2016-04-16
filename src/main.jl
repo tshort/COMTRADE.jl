@@ -55,7 +55,7 @@ function read_comtrade(basename)
         addcol!(d, reinterpret(UInt32, x[1:2, :], (cfg.npts,)))
         addcol!(d, reinterpret(UInt32, x[3:4, :], (cfg.npts,)))
         for i = 1:cfg.nA
-            addcol!(d, x[i+4, :]')
+            addcol!(d, reshape(x[i+4, :], (cfg.npts,)))
         end
         for i = 1:cfg.nD
             addcol!(d, Bool[(x >>> (mod1(i, 16) - 1)) & 0x01 for x in x[cfg.nA + 4 + cld(i, 16), :]])
