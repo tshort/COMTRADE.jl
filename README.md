@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/tshort/COMTRADE.jl.svg?branch=master)](https://travis-ci.org/tshort/COMTRADE.jl)
 
-This package supports reading files in COMTRADE format (Common format for
+This Julia package supports reading files in COMTRADE format (Common format for
 Transient Data Exchange for power systems). 1991 and 1999 file formats are
 supported. Some of the configuration features from the 2013 version are
 supported, but these have not been tested.
