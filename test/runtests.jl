@@ -1,7 +1,6 @@
 using COMTRADE
 using Base.Test
 
-
 z1 = read_comtrade("data/1991-ascii-sel")
 z2 = read_comtrade("data/1999-ascii-pq")
 z3 = read_comtrade("data/1999-binary-hif-sel")
@@ -13,6 +12,7 @@ z3 = read_comtrade("data/1999-binary-hif-sel")
 @test z1.cfg.D[2, :ch_id] == "TRP"
 @test z1.cfg.triggertime > z1.cfg.time
 @test z1.dat[1, :IA] ≈ -270.999876
+@test z1.dat[1, S"VA(kV)"] ≈ -33.3998801
 @test !z1.dat[1, :TRP]
 
 @test z2.filename == "data/1999-ascii-pq"

@@ -1,8 +1,8 @@
 module COMTRADE
 
 ## TODO
-## - tests
 ## - plotting example
+## - convert ascii DF columns to Array, not DataArray
 
 
 using DataFrames
