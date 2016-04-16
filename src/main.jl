@@ -44,8 +44,11 @@ function read_comtrade(basename)
     cfg = read_cfg("$basename.cfg")
     if cfg.ft == "ASCII"
         d = readtable("$basename.dat", separator = ',', header = false)
+        for i in 1:cfg.nA+2   # convert DataArray columns to Arrays
+            d.columns[i] = d[i].data
+        end
         for i in (1:cfg.nD) + 2 + cfg.nA
-            d[i] = map(Bool, d[i])
+            d.columns[i] = map(Bool, d[i].data)
         end
     elseif cfg.ft == "BINARY"
         x = reinterpret(Int16, readbytes(open("$basename.dat")))
