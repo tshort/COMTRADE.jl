@@ -1,9 +1,5 @@
 module COMTRADE
 
-## TODO
-## - plotting example
-
-
 using DataFrames
 
 export read_comtrade, @S_str

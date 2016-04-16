@@ -54,8 +54,8 @@ Base.show(io::IO,x::DateTimeMicro) = print(io,string(x))
 
 DateTimeMicro(x::Int64) = DateTimeMicro(Dates.UTInstant(Microsecond(x)))
 
-# _c(x) = convert(Int64,x)
-# DateTimeMicro(y,m=1,d=1,h=0,mi=0,s=0,μs=0) = DateTimeMicro(_c(y),_c(m),_c(d),_c(h),_c(mi),_c(s),_c(μs))
+_c(x) = convert(Int64,x)
+DateTimeMicro(y,m=1,d=1,h=0,mi=0,s=0,μs=0) = DateTimeMicro(_c(y),_c(m),_c(d),_c(h),_c(mi),_c(s),_c(μs))
 
 """
     DateTimeMicro(y, [m, d, h, mi, s, μs]) -> DateTimeMicro
